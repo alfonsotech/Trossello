@@ -7,7 +7,7 @@ import ConfirmationLink from '../../ConfirmationLink'
 import Icon from '../../Icon'
 import Button from '../../Button'
 import commands from '../../../commands'
-
+import SearchBar from './SearchBar'
 
 export default class Unarchive extends Component {
 
@@ -44,15 +44,21 @@ export default class Unarchive extends Component {
       <ArchivedCards board={board} searchTerm={this.state.searchTerm} className="BoardShowPage-MenuSideBar-ArchivedItems-List" /> :
       <ArchivedLists board={board} searchTerm={this.state.searchTerm} className="BoardShowPage-MenuSideBar-ArchivedItems-List"/>
     return (<div className="BoardShowPage-MenuSideBar-ArchivedItems">
-        <span className="BoardShowPage-MenuSideBar-ArchivedItems-Header" > <input
+        <SearchBar
+          className="BoardShowPage-MenuSideBar-ArchivedItems-Header"
+          value={this.state.searchTerm}
+          onChange={this.setSearchTerm}
+        />
+
+        {/* <span className="BoardShowPage-MenuSideBar-ArchivedItems-Header" > <input
           type="text"
           className="BoardShowPage-MenuSideBar-ArchivedItems-SearchBox"
           placeholder="Search archive..."
           value={this.state.searchTerm}
           onChange={this.setSearchTerm}
-        />
+        />*/}
       <Link onClick={this.toggleDisplay} className="BoardShowPage-MenuSideBar-ArchivedItems-ToggleDisplay">{toggleButtonText}</Link>
-      </span>
+      {/* </span> */}
       {toggleDisplayStatus}
     </div>
   )

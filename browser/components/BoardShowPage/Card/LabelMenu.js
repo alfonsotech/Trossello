@@ -10,6 +10,7 @@ import ActionsMenu from '../../ActionsMenu'
 import ActionsMenuPane from '../../ActionsMenuPane'
 import boardStore from '../../../stores/boardStore'
 import commands from '../../../commands'
+import SearchBar from '../MenuSideBar/SearchBar'
 import './LabelMenu.sass'
 
 export default class LabelMenu extends Component {
@@ -23,9 +24,16 @@ export default class LabelMenu extends Component {
   constructor(props){
     super(props)
     this.state = {
-      editingLabel: null
+      editingLabel: null,
+      searchTerm: ''
     }
     this.editLabel = this.editLabel.bind(this)
+    this.setSearchTerm = this.setSearchTerm.bind(this)
+  }
+
+  setSearchTerm(event) {
+    const searchTerm = event. target.value
+    this.setState({searchTerm: searchTerm})
   }
 
   editLabel(labelId){
@@ -49,6 +57,7 @@ export default class LabelMenu extends Component {
         "Create Label Pane": CreateLabelPanel,
       }}
     />
+
   }
 }
 
@@ -79,21 +88,27 @@ class MainLabelPanel extends Component {
         onClick={this.addOrRemoveLabel.bind(this, label.id)}
       />
     })
-
-    return <ActionsMenuPane
-      heading="Labels"
-      onClose={this.props.onClose}
-      className="LabelMenu-MainLabelPane"
-    >
-      <div className="LabelMenu-labels">
-        {boardLabels}
-      </div>
-      <div className="LabelMenu-controls">
-        <Link className="LabelMenu-button" onClick={this.props.goToPane('Create Label Pane')}>
-          Create Label
-        </Link>
-      </div>
-    </ActionsMenuPane>
+    return <SearchBar
+      searchTerm={this.state.SearchTerm}
+      setSearchTerm={this.setSearchTerm}
+      toggleDisplay={this.toggleDisplay}
+      toggleButtonText={toggleButtonText}
+    />
+    // return <ActionsMenuPane
+    //   heading="Labels"
+    //   onClose={this.props.onClose}
+    //   className="LabelMenu-MainLabelPane"
+    // >
+    //   <div className="LabelMenu-labels">
+    //     {boardLabels}
+    //   </div>
+    //
+    //   <div className="LabelMenu-controls">
+    //     <Link className="LabelMenu-button" onClick={this.props.goToPane('Create Label Pane')}>
+    //       Create Label
+    //     </Link>
+    //   </div>
+    // </ActionsMenuPane>
   }
 }
 

@@ -10,6 +10,8 @@ import List from '../List'
 import Unarchive from './Unarchive'
 import InviteByEmailPopover from '../../InviteByEmailPopover'
 import Avatar from '../../Avatar'
+import SearchBar from './SearchBar'
+// import LabelPane from './LabelPane'
 import './index.sass'
 
 // panes
@@ -30,6 +32,7 @@ export default class MenuSideBar extends Component {
     this.state = {
       panes: [],
       goingBack: false,
+      searchTerm: ''
     }
     this.close = this.close.bind(this)
     this.gotoPane = this.gotoPane.bind(this)
@@ -297,6 +300,17 @@ const SettingsPane = ({board, onClose, gotoPane, goBack}) =>
 const LabelsPane = ({board, onClose, gotoPane, goBack}) =>
   <Pane name="Labels">
     <div>Labels Panel</div>
+    {/* search box */}
+    {/* <SearchBar
+      searchTerm={this.state.SearchTerm}
+      setSearchTerm={this.setSearchTerm}
+      toggleDisplay={this.toggleDisplay}
+      toggleButtonText={toggleButtonText}
+    /> */}
+
+    {/* labels*/}
+    {/* pencil icon */}
+    {/* 2 buttons */}
   </Pane>
 
 
@@ -365,3 +379,5 @@ class InviteByEmailButton extends ToggleComponent {
     </span>
   }
 }
+
+module.exports = Pane
