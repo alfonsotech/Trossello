@@ -69,6 +69,7 @@ class MainLabelPanel extends Component {
 
   render() {
     const { card, board } = this.props
+    //TODO:HERE IS SUCCESS
     const boardLabels = board.labels.map( label => {
       const checked = card.label_ids.includes(label.id)
       return <LabelRow
